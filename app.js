@@ -4,11 +4,18 @@ $(document).ready(function() {
 
 
 
+
+
   $(document).on("keyup", function (key){
     if (key.keyCode === 65) { //'a'
-      $("#red").animate({ "left": "+=50px" }, "slow" )
-      }
-    });
+      $("#red").animate({ "left": "+=25px" }, "fast", function () {
+
+        alert ("Winner!");
+      });
+    } else if (key.keyCode === 76) { //'l'
+      $("#blue").animate({ "left": "+=25px" }, "fast");
+    }
+  });
   //
   //   // $(".board1.cell1").append("<img src='http://maps.google.com/mapfiles/ms/icons/green-dot.png'>")
   //       if ( (countS % 2 === 0) && (key.keyCode === 65) ) { //'a'
