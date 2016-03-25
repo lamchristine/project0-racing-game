@@ -1,0 +1,19 @@
+body {
+color: green;
+}
+/*
+.col-xs-10 {
+  border: 2px solid red;
+  height: 150px;
+}*/
+#board2 {
+  border: 2px solid blue;
+  height: 80px;
+  margin-top: 10px;
+}
+
+#board1 {
+  border: 2px solid red;
+  height: 80px;
+  margin-top: 10px;
+}
