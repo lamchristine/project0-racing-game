@@ -8,40 +8,61 @@ color: red;
 }*/
 
 h1 {
-  margin-left: 20px;
+  margin-left: 50px;
 }
 #board2 {
   /*border: 2px solid blue;*/
-  height: 250px;
+  height: 150px;
   margin-top: 30px;
   position: relative;
   border-right: 4px dashed red;
+  background-image: url("http://orig07.deviantart.net/bb47/f/2012/239/8/5/time_line_cover___cartoon_scenery_by_bd670816-d5cl7hp.jpg");
 }
 
 #board1 {
   /*border: 2px solid red;*/
-  height: 250px;
+  height: 150px;
   margin-top: 10px;
   position:relative;
   border-right: 4px dashed blue;
+  background-image: url("http://orig07.deviantart.net/bb47/f/2012/239/8/5/time_line_cover___cartoon_scenery_by_bd670816-d5cl7hp.jpg");
 }
 
 #red{
   position: absolute;
-  height: 14px
-  width: auto
+  height: 100px;
+  width: auto;
+  margin-top: 40px
 }
 
 #blue{
   position: absolute;
-  height: 14px
-  width: auto
+  height: 100px;
+  width: auto;
+  margin-top: 40px;
+  transform: scaleX(-1);
 
 }
 
 .row-info {
   margin-top: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
   height:50px;
   /*background-color: green;*/
+}
+
+.centered {
+  text-align: center;
+}
+
+.start {
+  margin-bottom: 10px;
+}
+
+
+p {
+  text-align:right;
+  margin-right: 5%;
+  color: black;
+  /*transform: rotate(-90deg);*/
 }
