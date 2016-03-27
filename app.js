@@ -1,73 +1,52 @@
+
+
 $(document).ready(function() {
 
-  // var countS = 0;
-
-//if keycode is 65, and position is not end; move forward
-//else if keycode is 65 and position is end; winner
-
-
-
-var winner;
-var playerRed = "Red"
-var playerBlue = "Blue"
+  var winner;
+  var player1 = "Red";
+  var player2 = "Blue";
+  var eachMove = 20;
 
 
-
-  $(document).on("keyup", function (key){
-
-  if (winner !== "Red" && winner !== "Blue" ) {
-
-    var positionRed = $('#red').position();
-    // console.log(positionRed.left);
-
-    // var positionRed = $("#red")[0].getBoundingClientRect();
-    // // console.log(positionRed.top, positionRed.right, positionRed.bottom, positionRed.left);
-
-    var positionBlue = $('#blue').position();
-    // console.log(positionBlue)
-
-    var positionBoard1 = $('#board1').position();
-    // console.log(positionBoard1.left) //left border
-
-    var finishLineRed = 0.95 * ( $('#board1').width() );
-    // console.log(finishLineRed);
-
-    var finishLineBlue = 0.95 * ( $('#board2').width() );
-    // console.log(finishLineBlue);
+  var position1 = $('#red').position();
+  var position2 = $('#blue').position();
+  var finishLine1 = 0.85 * $('#board1').width();
+  var finishLine2 = $('#board2').width();
+  // var positionBoard1 = $('#board1').position();
 
 
-  // var positionBoard1 = $("#board1")[0].getBoundingClientRect();
-  // console.log(positionBoard1.top, positionBoard1.right, positionBoard1.bottom, positionBoard1.left);
-
-
-    if ( (key.keyCode === 65) && (positionRed.left < finishLineRed) ){ //'a'
-      $("#red").animate({ "left": "+=40" }, "fast");
-    } else if (positionRed.left > finishLineRed) {
-      winner = "Red";
-      alert (winner);
+  function movePlayer1() {
+      if (position1.left < finishLine1) { //'a'
+        $("#red").animate({ "left": "+=20px" }, "fast");
+        position1.left += eachMove;
+      } else if (position1.left > finishLine1) {
+        winner = "Red";
+        alert ("The Winner is " + winner);
+      }
     }
 
-    if ( (key.keyCode === 76) && (positionBlue.left < finishLineBlue) ) { //'l'
-      $("#blue").animate({ "left": "+=25px" }, "fast");
-    } else if (positionBlue.left > finishLineBlue) {
-      winner = "Blue";
-      alert ("Blue is Winner");
+  function movePlayer2() {
+      if (position2.left < finishLine2) { //'l'
+        $("#blue").animate({ "left": "+=20px" }, "fast");
+        position2.left += eachMove;
+      } else if (position2.left > finishLine2) {
+        winner = "Blue";
+        alert ("The Winner is " + winner);
+      }
     }
+
+  function getWinner() {
+    $(document).on("keyup", function (key) {
+      if (winner !== "Red" && winner !== "Blue" ) {
+        if (key.keyCode === 65) {
+          movePlayer1();
+        } else if (key.keyCode === 76) {
+          movePlayer2();
+        }
+      }
+    });
   }
+
+  getWinner();
+
 });
-});
-  //
-  //   // $(".board1.cell1").append("<img src='http://maps.google.com/mapfiles/ms/icons/green-dot.png'>")
-  //       if ( (countS % 2 === 0) && (key.keyCode === 65) ) { //'a'
-  //         $(".board1.cell").append("<img src='http://maps.google.com/mapfiles/ms/icons/green-dot.png'>");
-  //         $(".board1").addClass("cell" + countS);
-  //         countS = countS + 1;
-  //         // $(".board1.cell(countS)").append("<img src='http://maps.google.com/mapfiles/ms/icons/green-dot.png'>");
-  //
-  //       //
-  //       } else if ( (countS % 2 !== 0) && (key.keyCode === 65) ) {
-  //         $(".board1").empty();
-  //
-  //         $(".board1").addClass("<img src='http://maps.google.com/mapfiles/ms/icons/green-dot.png'>");
-  //         countS = countS + 1;
-  //
