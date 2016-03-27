@@ -10,11 +10,22 @@ color: green;
   border: 2px solid blue;
   height: 80px;
   margin-top: 10px;
-  position: absolute;
+  position: relative;
+  background-color: black
 }
 
 #board1 {
   border: 2px solid red;
   height: 80px;
   margin-top: 10px;
+  position:relative;
+  background-color: yellow
+}
+
+#red{
+  position: absolute;
+}
+
+.row {
+  background-color: green
 }
