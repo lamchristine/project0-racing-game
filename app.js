@@ -30,8 +30,8 @@ $(document).ready(function() {
 
   function getPlayer(imgSelector, btnSelector) {
     player_prompt = prompt("Please enter your first and last name");
-    player_array = player_prompt.split(" "); //array of [Daniel, Lee]
-    player = new Player( player_array[0], player_array[1], imgSelector);
+    player_array = player_prompt.split(" ");
+    player = new Player( player_array[0], (player_array[1] || ''), imgSelector);
     btnSelector.text(player.full_name);
     return player;
   }
