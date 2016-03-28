@@ -4,27 +4,24 @@ $(document).ready(function() {
 
 
 /* Player Object Construction */
-function Player(first_name, last_name) {
+  function Player(first_name, last_name, image) {
     /* Object Attributes*/
     this.first_name = first_name;
     this.last_name = last_name;
+    this.image = image;
+
+    this.full_name = first_name + " " + last_name;
+    this.position = image.position();
     /* End Object Attributes */
 
-
-    this.full_name = function () {
-      return first_name + " " + last_name;
-    };
-}
-
+  }
 
   var winner;
   var player1 = null;
   var player2 = null;
-  var eachMove = 50;
+  var eachMoveForward = 50;
 
 
-  var position1 = $('#red').position();
-  var position2 = $('#blue').position();
   var finishLine1 = $('#board1').width();
   var finishLine2 = $('#board2').width();
 
@@ -32,7 +29,7 @@ function Player(first_name, last_name) {
     $(".player1").on("click", function (){
       player1_prompt = prompt("Please enter your first and last name");
       player1_array = player1_prompt.split(" "); //array of [Daniel, Lee]
-      player1 = new Player( player1_array[0], player1_array[1] );
+      player1 = new Player( player1_array[0], player1_array[1], $('#red') );
       $(this).text(player1.full_name);
       return player1;
     });
@@ -42,7 +39,7 @@ function Player(first_name, last_name) {
     $(".player2").on("click", function (){
       player2_prompt = prompt("Please enter your name");
       player2_array = player2_prompt.split(" ");
-      player2 = new Player( player2_array[0], player2_array[1] );
+      player2 = new Player( player2_array[0], player2_array[1], $('#blue') );
       $(this).text(player2.full_name);
       return player2;
     });
@@ -50,31 +47,26 @@ function Player(first_name, last_name) {
 
   function reset() {
     $(".reset").on("click", function() {
-      $("#red").css("left","15px");
-      position1.left = 15;
+      player1.image.css("left","15px");
+      player1.position.left = 15;
       winner = "";
-      $("#blue").css("left","15px");
-      position2.left = 15;
+      player2.image.css("left","15px");
+      player2.position.left = 15;
     });
   } reset();
 
 
   function movePlayer1() {
     $(document).on("keyup", function (key) {
-      if (position1.left < finishLine1) {
+      if (player1.position.left < finishLine1) {
         if (key.keyCode === 65) { //'a' forward
-          $("#red").animate({ "left": "+=50px" },  "fast", "linear");
-          position1.left += eachMove;
+          player1.image.animate({ "left": "+=50px"},  "fast", "linear");
+          player1.position.left += eachMoveForward;
         } else if (key.keyCode === 83) { //'s' jumps
-          $("#red").animate({top: "-=30px"}, "fast", "linear");
-          // // $("#red").animate({left: "+=100px"},100, "linear");
-          // // $("#red").animate({top: "-=20px"}, 100, "linear");
-          // $("#red").animate({left: "+=100px"},100, "linear");
-          $("#red").animate({top: "+=30px"}, "fast", "linear");
-          // $("#red").animate({top: "+=80px"}, 100, "linear");
-          // position1.left += 100;
+          player1.image.animate({top: "-=30px"}, "fast", "linear");
+          player1.image.animate({top: "+=30px"}, "fast", "linear");
         }
-      } else if (position1.left > finishLine1) {
+      } else if (player1.position.left > finishLine1) {
         winner = player1;
         alert ("The Winner is " + winner.first_name );
       }
@@ -83,17 +75,15 @@ function Player(first_name, last_name) {
 
   function movePlayer2() {
     $(document).on("keyup", function (key) {
-      if (position2.left < finishLine2) {
+      if (player2.position.left < finishLine2) {
         if (key.keyCode === 76) { //'l' forward
-          $("#blue").animate({ "left": "+=50px" }, "fast", "linear");
-          position2.left += eachMove;
+          player2.image.animate({ "left": "+=50px"}, "fast", "linear");
+          player2.position.left += eachMoveForward;
         } else if (key.keyCode === 75) { //'k' jumps
-          $("#blue").animate({top: "-=30px"}, "fast", "linear");
-          // $("#blue").animate({left: "+=100px"}, 10, "linear");
-          $("#blue").animate({top: "+=30px"}, "fast", "linear");
-          // position1.left += 100;
+          player2.image.animate({top: "-=30px"}, "fast", "linear");
+          player2.image.animate({top: "+=30px"}, "fast", "linear");
         }
-      } else if (position2.left > finishLine2) {
+      } else if (player2.position.left > finishLine2) {
         winner = player2;
         alert ("The Winner is " + winner.first_name);
       }
@@ -114,7 +104,6 @@ function Player(first_name, last_name) {
         alert("Please enter player names");
       } else {
         getWinner();
-        // setObstacles();
       }
     });
   } startGame();
