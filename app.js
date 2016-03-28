@@ -4,19 +4,20 @@ $(document).ready(function() {
 
 
 /* Player Object Construction */
-function Player(name, player, score) {
+function Player(first_name, last_name) {
     /* Object Attributes*/
-    this.name=name;
-    this.player=player;
-    this.score=score;
+    this.first_name = first_name;
+    this.last_name = last_name;
     /* End Object Attributes */
 }
+
+  var newPlayer = new Player("Danel", "Lee");
 
 
   var winner;
   var player1 = null;
   var player2 = null;
-  var eachMove = 20;
+  var eachMove = 50;
 
 
   var position1 = $('#red').position();
@@ -55,11 +56,16 @@ function Player(name, player, score) {
     $(document).on("keyup", function (key) {
       if (position1.left < finishLine1) {
         if (key.keyCode === 65) { //'a' forward
-          $("#red").animate({ "left": "+=20px" }, "fast");
+          $("#red").animate({ "left": "+=50px" }, 100, "linear");
           position1.left += eachMove;
         } else if (key.keyCode === 83) { //'s' jumps
-          $("#red").animate({top: "-=30px"}, "fast");
-          $("#red").animate({top: "+=30px"}, "fast");
+          $("#red").animate({top: "-=30px"}, 100, "linear");
+          // $("#red").animate({left: "+=100px"},100, "linear");
+          // $("#red").animate({top: "-=20px"}, 100, "linear");
+          $("#red").animate({left: "+=100px"},100, "linear");
+          $("#red").animate({top: "+=30px"}, 100, "linear");
+          // $("#red").animate({top: "+=80px"}, 100, "linear");
+          position1.left += 100;
         }
       } else if (position1.left > finishLine1) {
         winner = player1;
@@ -72,11 +78,13 @@ function Player(name, player, score) {
     $(document).on("keyup", function (key) {
       if (position2.left < finishLine2) {
         if (key.keyCode === 76) { //'l' forward
-          $("#blue").animate({ "left": "+=20px" }, "fast");
+          $("#blue").animate({ "left": "+=50px" }, "fast", "linear");
           position2.left += eachMove;
         } else if (key.keyCode === 75) { //'k' jumps
-          $("#blue").animate({top: "-=30px"}, "fast");
-          $("#blue").animate({top: "+=30px"}, "fast");
+          $("#blue").animate({top: "-=30px"}, 100, "linear");
+          $("#blue").animate({left: "+=100px"}, 10, "linear");
+          $("#blue").animate({top: "+=30px"}, 100, "linear");
+          position1.left += 100;
         }
       } else if (position2.left > finishLine2) {
         winner = player2;
@@ -99,10 +107,29 @@ function Player(name, player, score) {
         alert("Please enter player names");
       } else {
         getWinner();
+        // setObstacles();
       }
     });
   } startGame();
 });
+
+// function setObstacles() {
+//   $(".obstacle").animate({"right": "+=1000px"}, 10000); //alerts Hello every 3 seconds
+//   if ( ( $(".obstacle").position.left < finishLine1 ) && ( $(".obstacle").position.left > $('#board1').position.left ) )  {
+//   $('.obstacle').css({'display': 'inline-block'});
+// }
+// }
+//
+/* random obstacles */
+  // function setObstacles() {
+  //   setInterval (function() {
+  //     $(".obstacle").animate({"right": "+=50px"}, "fast"); }, 500); //alerts Hello every 3 seconds
+  // }
+
+  // $(".obstacles").animate("right": "+=1000"}, "slow");
+  //
+
+
 
 /* WORKS */
 
