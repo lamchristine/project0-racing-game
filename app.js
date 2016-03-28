@@ -25,25 +25,21 @@ $(document).ready(function() {
   var finishLine1 = $('#board1').width();
   var finishLine2 = $('#board2').width();
 
-  function getPlayer1 () {
-    $(".player1").on("click", function (){
-      player1_prompt = prompt("Please enter your first and last name");
-      player1_array = player1_prompt.split(" "); //array of [Daniel, Lee]
-      player1 = new Player( player1_array[0], player1_array[1], $('#red') );
-      $(this).text(player1.full_name);
-      return player1;
-    });
-  } getPlayer1();
+  $(".player1").on("click", function() {
+    player1 = getPlayer( $('#red'), $('.player1') );
+  });
 
-  function getPlayer2 () {
-    $(".player2").on("click", function (){
-      player2_prompt = prompt("Please enter your name");
-      player2_array = player2_prompt.split(" ");
-      player2 = new Player( player2_array[0], player2_array[1], $('#blue') );
-      $(this).text(player2.full_name);
-      return player2;
-    });
-  } getPlayer2();
+  $(".player2").on("click", function() {
+    player2 = getPlayer( $('#blue'), $('.player2') );
+  });
+
+  function getPlayer(imgSelector, btnSelector) {
+    player_prompt = prompt("Please enter your first and last name");
+    player_array = player_prompt.split(" "); //array of [Daniel, Lee]
+    player = new Player( player_array[0], player_array[1], imgSelector);
+    btnSelector.text(player.full_name);
+    return player;
+  }
 
   function reset() {
     $(".reset").on("click", function() {
