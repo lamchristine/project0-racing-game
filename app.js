@@ -63,16 +63,16 @@ function Player(first_name, last_name) {
     $(document).on("keyup", function (key) {
       if (position1.left < finishLine1) {
         if (key.keyCode === 65) { //'a' forward
-          $("#red").animate({ "left": "+=50px" }, 100, "linear");
+          $("#red").animate({ "left": "+=50px" },  "fast", "linear");
           position1.left += eachMove;
         } else if (key.keyCode === 83) { //'s' jumps
-          $("#red").animate({top: "-=30px"}, 100, "linear");
+          $("#red").animate({top: "-=30px"}, "fast", "linear");
+          // // $("#red").animate({left: "+=100px"},100, "linear");
+          // // $("#red").animate({top: "-=20px"}, 100, "linear");
           // $("#red").animate({left: "+=100px"},100, "linear");
-          // $("#red").animate({top: "-=20px"}, 100, "linear");
-          $("#red").animate({left: "+=100px"},100, "linear");
-          $("#red").animate({top: "+=30px"}, 100, "linear");
+          $("#red").animate({top: "+=30px"}, "fast", "linear");
           // $("#red").animate({top: "+=80px"}, 100, "linear");
-          position1.left += 100;
+          // position1.left += 100;
         }
       } else if (position1.left > finishLine1) {
         winner = player1;
@@ -88,10 +88,10 @@ function Player(first_name, last_name) {
           $("#blue").animate({ "left": "+=50px" }, "fast", "linear");
           position2.left += eachMove;
         } else if (key.keyCode === 75) { //'k' jumps
-          $("#blue").animate({top: "-=30px"}, 100, "linear");
-          $("#blue").animate({left: "+=100px"}, 10, "linear");
-          $("#blue").animate({top: "+=30px"}, 100, "linear");
-          position1.left += 100;
+          $("#blue").animate({top: "-=30px"}, "fast", "linear");
+          // $("#blue").animate({left: "+=100px"}, 10, "linear");
+          $("#blue").animate({top: "+=30px"}, "fast", "linear");
+          // position1.left += 100;
         }
       } else if (position2.left > finishLine2) {
         winner = player2;
