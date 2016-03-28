@@ -9,9 +9,12 @@ function Player(first_name, last_name) {
     this.first_name = first_name;
     this.last_name = last_name;
     /* End Object Attributes */
-}
 
-  var newPlayer = new Player("Danel", "Lee");
+
+    this.full_name = function () {
+      return first_name + " " + last_name;
+    };
+}
 
 
   var winner;
@@ -27,16 +30,20 @@ function Player(first_name, last_name) {
 
   function getPlayer1 () {
     $(".player1").on("click", function (){
-      player1 = prompt("Please enter your name");
-      $(this).text(player1);
+      player1_prompt = prompt("Please enter your first and last name");
+      player1_array = player1_prompt.split(" "); //array of [Daniel, Lee]
+      player1 = new Player( player1_array[0], player1_array[1] );
+      $(this).text(player1.full_name);
       return player1;
     });
   } getPlayer1();
 
   function getPlayer2 () {
     $(".player2").on("click", function (){
-      player2 = prompt("Please enter your name");
-      $(this).text(player2);
+      player2_prompt = prompt("Please enter your name");
+      player2_array = player2_prompt.split(" ");
+      player2 = new Player( player2_array[0], player2_array[1] );
+      $(this).text(player2.full_name);
       return player2;
     });
   } getPlayer2();
@@ -69,7 +76,7 @@ function Player(first_name, last_name) {
         }
       } else if (position1.left > finishLine1) {
         winner = player1;
-        alert ("The Winner is " + winner);
+        alert ("The Winner is " + winner.first_name );
       }
     });
   }
@@ -88,7 +95,7 @@ function Player(first_name, last_name) {
         }
       } else if (position2.left > finishLine2) {
         winner = player2;
-        alert ("The Winner is " + winner);
+        alert ("The Winner is " + winner.first_name);
       }
     });
   }
