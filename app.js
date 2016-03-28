@@ -1,7 +1,4 @@
-
-
 $(document).ready(function() {
-
 
 /* Player Object Construction */
   function Player(first_name, last_name, image) {
@@ -13,24 +10,22 @@ $(document).ready(function() {
     this.full_name = first_name + " " + last_name;
     this.position = image.position();
     /* End Object Attributes */
-
   }
 
-  var winner;
+  var winner = null;
   var player1 = null;
   var player2 = null;
   var eachMoveForward = 50;
-
 
   var finishLine1 = $('#board1').width();
   var finishLine2 = $('#board2').width();
 
   $(".player1").on("click", function() {
-    player1 = getPlayer( $('#red'), $('.player1') );
+    player1 = getPlayer( $('#red'), $(this) );
   });
 
   $(".player2").on("click", function() {
-    player2 = getPlayer( $('#blue'), $('.player2') );
+    player2 = getPlayer( $('#blue'), $(this) );
   });
 
   function getPlayer(imgSelector, btnSelector) {
@@ -48,6 +43,8 @@ $(document).ready(function() {
       winner = "";
       player2.image.css("left","15px");
       player2.position.left = 15;
+      $(".player2").text("Top: Player 2");
+      $(".player1").text("Top: Player 1");
     });
   } reset();
 
@@ -88,7 +85,7 @@ $(document).ready(function() {
 
 
   function getWinner() {
-      if ( (winner !== player1) && (winner !== player2) ) {
+      if ( winner === null ) {
           movePlayer1();
           movePlayer2();
       }
@@ -104,57 +101,3 @@ $(document).ready(function() {
     });
   } startGame();
 });
-
-// function setObstacles() {
-//   $(".obstacle").animate({"right": "+=1000px"}, 10000); //alerts Hello every 3 seconds
-//   if ( ( $(".obstacle").position.left < finishLine1 ) && ( $(".obstacle").position.left > $('#board1').position.left ) )  {
-//   $('.obstacle').css({'display': 'inline-block'});
-// }
-// }
-//
-/* random obstacles */
-  // function setObstacles() {
-  //   setInterval (function() {
-  //     $(".obstacle").animate({"right": "+=50px"}, "fast"); }, 500); //alerts Hello every 3 seconds
-  // }
-
-  // $(".obstacles").animate("right": "+=1000"}, "slow");
-  //
-
-
-
-/* WORKS */
-
-  // function movePlayer1() {
-  //     if (key.keyCode === 65) { //'a'
-  //       $("#red").animate({ "left": "+=20px" }, "fast");
-  //       position1.left += eachMove;
-  //     } else if (position1.left > finishLine1) {
-  //       winner = player1;
-  //       alert ("The Winner is " + winner);
-  //     }
-  //   }
-  //
-  // function movePlayer2() {
-  //     if (position2.left < finishLine2) { //'l'
-  //       $("#blue").animate({ "left": "+=20px" }, "fast");
-  //       position2.left += eachMove;
-  //     } else if (position2.left > finishLine2) {
-  //       winner = player2;
-  //       alert ("The Winner is " + winner);
-  //     }
-  //   }
-  //
-  // function getWinner() {
-  //   $(document).on("keyup", function (key) {
-  //     if ( (winner !== player1) && (winner !== player2) ) {
-  //       if (key.keyCode === 65) || (key.keyCode === 83) {
-  //         movePlayer1();
-  //       } else if (key.keyCode === 76) || (key.keyCode === 75) {
-  //         movePlayer2();
-  //       }
-  //     }
-  //   });
-  // }
-
-/* WORKS */
